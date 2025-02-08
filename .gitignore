@@ -1,0 +1,34 @@
+# Visual Studio specific
+.vs/
+*.user
+*.suo
+*.vcxproj.user
+*.code-workspace
+
+# Build and output files
+bin/
+obj/
+Debug/
+Release/
+Generated Files/
+
+# Maui specific
+**/Resources/*.designer.cs
+**/Resources/*.g.cs
+**/Resources/*.g.i.cs
+**/platforms/*/bin/
+**/platforms/*/obj/
+**/AppIcon.*.png
+**/SplashScreen.*.png
+
+# User-specific files
+*.swp
+*.sln.ide
+*.DS_Store
+Thumbs.db
+
+# JetBrains Rider
+.idea/
+
+# Mac files
+*.DS_Store
