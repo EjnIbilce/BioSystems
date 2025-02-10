@@ -13,9 +13,5 @@ namespace BioSystems {
         private async void onRegisterClicked(Object sender, EventArgs e) {
             await DisplayAlert("Register", "registro clicado", "oki doki");
         }
-
-        private async void onLoginClicked(Object sender, EventArgs e) {
-            await Shell.Current.GoToAsync("LoginPage");
-        }
     }
 }
