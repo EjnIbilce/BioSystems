@@ -6,10 +6,10 @@
     xmlns:local="clr-namespace:BioSystems"
     Shell.FlyoutBehavior="Disabled"
     Title="BioSystems">
-
-    <ShellContent
-        Title="Home"
-        ContentTemplate="{DataTemplate local:MainPage}"
-        Route="MainPage" />
-
+    
+    <ShellItem Title="Main">
+        <ShellContent Title="Login" ContentTemplate="{DataTemplate local:LoginPage}" Route="LoginPage" />
+        <ShellContent Title="Cadastro" ContentTemplate="{DataTemplate local:RegisterPage}" Route="RegisterPage" />
+    </ShellItem>
+    <!-- <ShellContent Title="Home" ContentTemplate="{DataTemplate local:MainPage}" Route="MainPage" /> -->
 </Shell>
