@@ -1,4 +1,7 @@
-﻿using Microsoft.Extensions.Logging;
+﻿using BioSystems.Data;
+using BioSystems.Services;
+using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Logging;
 
 namespace BioSystems
 {
@@ -14,6 +17,14 @@ namespace BioSystems
                     fonts.AddFont("OpenSans-Regular.ttf", "OpenSansRegular");
                     fonts.AddFont("OpenSans-Semibold.ttf", "OpenSansSemibold");
                 });
+
+            var connectionString = AppDbContext.LoadConnectionString();
+
+            builder.Services.AddDbContext<AppDbContext>(options => options.UseNpgsql(connectionString));
+
+            builder.Services.AddScoped<UserService>();
+
+            builder.Services.AddTransient<RegisterPage>();
 
 #if DEBUG
     		builder.Logging.AddDebug();

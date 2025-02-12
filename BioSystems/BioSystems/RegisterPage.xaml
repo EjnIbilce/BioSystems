@@ -12,6 +12,7 @@
         <Entry x:Name="entryPassword" Placeholder="Senha" IsPassword="True"/>
 
         <Button Text="Cadastrar" Clicked="onRegisterClicked"/>
+        <Button Text="Já tenho conta" Clicked="onAlreadyClicked"/>
     </VerticalStackLayout>
 
 </ContentPage>
