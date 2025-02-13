@@ -23,15 +23,17 @@ namespace BioSystems {
             String password = entryPassword.Text;
             
             try {
-                await DisplayAlert(name, email, password);
                 if (name.Length == 0 || email.Length == 0 || password.Length == 0) {
                     await DisplayAlert("Erro!", "Ops! Você se esqueceu de escrever um dos campos!", "OK");
                     return;
                 }
-
-                await _userService.RegisterUser(name, email, password);
-                await DisplayAlert("Sucesso!", "Usuário registrado na base de dados!", "OK");
-                await Shell.Current.GoToAsync("///LoginPage");
+                try {
+                    await _userService.RegisterUser(name, email, password);
+                    await DisplayAlert("Sucesso!", "Usuário registrado na base de dados!", "OK");
+                    await Shell.Current.GoToAsync("///LoginPage");
+                } catch (Exception ex) {
+                    await DisplayAlert("Algo deu errado...", ex.Message, "OK");
+                }
             } catch (Exception ex) {
                 await DisplayAlert("B.O.", $"Aí é foda man: {ex.Message}", ":(");
             }

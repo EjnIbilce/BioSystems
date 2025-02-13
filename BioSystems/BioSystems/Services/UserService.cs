@@ -4,13 +4,24 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using BioSystems.Data;
+using BioSystems.Exceptions;
 using BioSystems.Models;
+using Microsoft.EntityFrameworkCore;
 
 namespace BioSystems.Services {
     public class UserService {
         private readonly AppDbContext _context;
         public UserService(AppDbContext dbContext) {
             _context = dbContext;
+        }
+        public async Task<User?> LoginUser(string email, string password) {
+            var user = await _context.Users.FirstOrDefaultAsync(u => u.email == email);
+
+            if (user == null || user.password != BCrypt.Net.BCrypt.HashPassword(password)) {
+                throw new UserNotFoundException();
+            }
+
+            return user;
         }
 
         public async Task RegisterUser(string name, string email, string password) {
@@ -22,10 +33,19 @@ namespace BioSystems.Services {
                     email = email,
                     password = hashedPassword
                 };
-                _context.Users.Add(user);
-                await _context.SaveChangesAsync();
+
+                var pu = _context.Users.FirstOrDefaultAsync(u => u.email == email || u.name == name);
+
+                if (pu == null) {
+                    _context.Users.Add(user);
+                    await _context.SaveChangesAsync();
+                } else {
+                    throw new UserAlreadyExistsException();
+                }
+            } catch (UserAlreadyExistsException) {
+                throw new UserAlreadyExistsException();
             } catch (Exception ex) {
-                throw new InvalidOperationException("An error occurred while registering the user.", ex);
+                throw new InvalidOperationException("Erro ao registrar o usuário", ex);
             }
         }
     }

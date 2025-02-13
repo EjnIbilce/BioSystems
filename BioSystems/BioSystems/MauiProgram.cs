@@ -25,9 +25,10 @@ namespace BioSystems
             builder.Services.AddScoped<UserService>();
 
             builder.Services.AddTransient<RegisterPage>();
+            builder.Services.AddTransient<LoginPage>();
 
 #if DEBUG
-    		builder.Logging.AddDebug();
+            builder.Logging.AddDebug();
 #endif
 
             return builder.Build();

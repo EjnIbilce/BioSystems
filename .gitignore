@@ -32,3 +32,5 @@ Thumbs.db
 
 # Mac files
 *.DS_Store
+
+appsettings.json
