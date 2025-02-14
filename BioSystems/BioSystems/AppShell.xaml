@@ -8,6 +8,7 @@
     Title="BioSystems">
     
     <ShellItem Title="Main">
-        <ShellContent Title="Login" ContentTemplate="{DataTemplate local:LoginPage}" Route="LoginPage" />
+        <!-- <ShellContent Title="Login" ContentTemplate="{DataTemplate local:LoginPage}" Route="LoginPage" /> -->
+        <ShellContent Title="Carrossel" ContentTemplate="{DataTemplate local:OnBoardingPage}" Route="OnBoardingPage" />
     </ShellItem>
 </Shell>

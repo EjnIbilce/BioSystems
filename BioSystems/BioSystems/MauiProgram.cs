@@ -19,13 +19,16 @@ namespace BioSystems
                 });
 
             var connectionString = AppDbContext.LoadConnectionString();
+            bool isFirstTime = Preferences.Get("HasSeenOnboarding", false);
 
             builder.Services.AddDbContext<AppDbContext>(options => options.UseNpgsql(connectionString));
+
 
             builder.Services.AddScoped<UserService>();
 
             builder.Services.AddTransient<RegisterPage>();
             builder.Services.AddTransient<LoginPage>();
+            builder.Services.AddTransient<OnBoardingPage>();
 
 #if DEBUG
             builder.Logging.AddDebug();
