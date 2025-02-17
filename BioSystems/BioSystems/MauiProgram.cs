@@ -1,5 +1,7 @@
 ﻿using BioSystems.Data;
+using BioSystems.Models;
 using BioSystems.Services;
+using BioSystems.Views;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Logging;
 
@@ -28,7 +30,7 @@ namespace BioSystems
 
             builder.Services.AddTransient<RegisterPage>();
             builder.Services.AddTransient<LoginPage>();
-            builder.Services.AddTransient<OnBoardingPage>();
+            builder.Services.AddTransient<IntroScreenView>();
 
 #if DEBUG
             builder.Logging.AddDebug();

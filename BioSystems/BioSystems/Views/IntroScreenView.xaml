@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+			 xmlns:viewModels="clr-namespace:BioSystems.ViewModels"
+			 xmlns:models="clr-namespace:BioSystems.Models"
+             x:Class="BioSystems.Views.IntroScreenView"
+			 x:DataType="viewModels:IntroScreenViewModel"
+             >
+	
+    <StackLayout Margin="10">
+		<CarouselView
+			Loop="False"
+			HorizontalOptions="FillAndExpand"
+			VerticalOptions="FillAndExpand" 
+			ItemsSource="{Binding IntroScreens}"
+			CurrentItemChanged="Next"
+			>
+			<CarouselView.ItemTemplate>
+				<DataTemplate x:DataType="models:IntroScreen">
+					<Grid>
+						<Grid.RowDefinitions>
+							<RowDefinition Height="2*" />
+							<RowDefinition Height="*" />
+							<RowDefinition Height="100" />
+						</Grid.RowDefinitions>
+						<Image Source="{Binding Image}" Aspect="AspectFit" Grid.Row="0"></Image>
+
+						<VerticalStackLayout HorizontalOptions="Fill" Grid.Row="1">
+							<Label Text="{Binding Title}" HorizontalTextAlignment="Center" FontSize="28" FontAttributes="Bold" TextColor="{StaticResource Primary}"></Label>
+							<Label Text="{Binding Description}" HorizontalTextAlignment="Center" FontSize="20" TextColor="Black"></Label>
+						</VerticalStackLayout>
+					</Grid>
+				</DataTemplate>
+			</CarouselView.ItemTemplate>
+		</CarouselView>
+		<StackLayout Orientation="Horizontal" Margin="0,0,0,50" HorizontalOptions="Center">
+				<IndicatorView x:Name="ltBalls"
+							   VerticalOptions="Center"
+							   IndicatorSize="8"
+							   IndicatorColor="{StaticResource PrimaryLight}"
+							   SelectedIndicatorColor="{StaticResource PrimaryDark}">
+			</IndicatorView>
+			
+		</StackLayout>
+		<StackLayout Orientation="Horizontal">
+			<Frame BorderColor="Transparent">
+				<Button Text="Pular" BackgroundColor="Transparent" FontSize="18" Clicked="Jump"></Button>
+			</Frame>
+			<Frame Padding="0"
+				   HorizontalOptions="EndAndExpand"
+				   CornerRadius="30"
+				   HeightRequest="60"
+				   WidthRequest="90"
+				   BackgroundColor="{StaticResource Primary}"
+				   >
+				<Label Text="Próximo" FontSize="18" HorizontalTextAlignment="Center" VerticalTextAlignment="Center"></Label>
+			</Frame>
+		</StackLayout>
+    </StackLayout>
+
+</ContentPage>

@@ -6,8 +6,6 @@
         {
             InitializeComponent();
 
-            Application.Current.MainPage = new OnBoardingPage();
-
             Routing.RegisterRoute(nameof(LoginPage), typeof(LoginPage));
             Routing.RegisterRoute(nameof(RegisterPage), typeof(RegisterPage));
         }
