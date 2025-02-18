@@ -5,7 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 
 namespace BioSystems.Exceptions {
-    public class UserNotFoundException : Exception {
-        public UserNotFoundException() : base("Usuário não foi encontrado") { }
+    public class WrongPasswordException : Exception {
+        public WrongPasswordException() : base("Senha errada") { }
     }
 }

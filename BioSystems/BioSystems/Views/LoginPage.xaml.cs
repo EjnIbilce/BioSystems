@@ -7,7 +7,7 @@ using BioSystems.Exceptions;
 using BioSystems.Models;
 using BioSystems.Services;
 
-namespace BioSystems {
+namespace BioSystems.Views {
     public partial class LoginPage : ContentPage {
         private readonly UserService _userService;
 
@@ -21,7 +21,10 @@ namespace BioSystems {
                 var email = entryEmail.Text;
                 var password = entryPassword.Text;
                 User user = (await _userService.LoginUser(email, password))!;
+                await DisplayAlert("Deu bom", "usuario achado", "OK");
             } catch (UserNotFoundException ex) {
+                await DisplayAlert("Opss!", ex.Message, "OK");
+            } catch (WrongPasswordException ex) {
                 await DisplayAlert("Opss!", ex.Message, "OK");
             } catch (Exception ex) {
                 await DisplayAlert("Aq deu ruim msm!", ex.Message, "OK");

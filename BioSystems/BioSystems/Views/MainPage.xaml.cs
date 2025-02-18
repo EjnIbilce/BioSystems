@@ -1,4 +1,4 @@
-﻿namespace BioSystems
+﻿namespace BioSystems.Views
 {
     public partial class MainPage : ContentPage
     {
@@ -13,8 +13,12 @@
         {
             count++;
 
+            Preferences.Clear();
+
+            string uid = Preferences.Get("UserId", "n tem");
+
             if (count == 1)
-                CounterBtn.Text = $"Clicked {count} time";
+                CounterBtn.Text = $"Clicked {uid} time";
             else
                 CounterBtn.Text = $"Clicked {count} times";
 

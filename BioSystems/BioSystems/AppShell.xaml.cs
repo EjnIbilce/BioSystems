@@ -1,4 +1,6 @@
-﻿namespace BioSystems
+﻿using BioSystems.Views;
+
+namespace BioSystems
 {
     public partial class AppShell : Shell
     {

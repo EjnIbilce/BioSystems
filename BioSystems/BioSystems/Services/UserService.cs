@@ -1,4 +1,4 @@
-﻿using System;
+﻿    using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -17,9 +17,15 @@ namespace BioSystems.Services {
         public async Task<User?> LoginUser(string email, string password) {
             var user = await _context.Users.FirstOrDefaultAsync(u => u.email == email);
 
-            if (user == null || user.password != BCrypt.Net.BCrypt.HashPassword(password)) {
+            if (user == null) {
                 throw new UserNotFoundException();
+            } else if (!BCrypt.Net.BCrypt.Verify(password, user.password)) {
+                throw new WrongPasswordException();
             }
+
+            Preferences.Set("UserId", user.id);
+            Preferences.Set("UserName", user.name);
+            Preferences.Set("UserEmail", user.email);
 
             return user;
         }
@@ -34,7 +40,7 @@ namespace BioSystems.Services {
                     password = hashedPassword
                 };
 
-                var pu = _context.Users.FirstOrDefaultAsync(u => u.email == email || u.name == name);
+                var pu = await _context.Users.FirstOrDefaultAsync(u => u.email == email);
 
                 if (pu == null) {
                     _context.Users.Add(user);

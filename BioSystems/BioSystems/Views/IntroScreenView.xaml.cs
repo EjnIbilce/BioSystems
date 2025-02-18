@@ -19,7 +19,12 @@ namespace BioSystems.Views
         }
 
         private async void Jump(Object sender, EventArgs e) {
-            await Shell.Current.GoToAsync("/LoginPage");
+            if (Shell.Current == null) {
+                await DisplayAlert("Error", "Navigation system is not initialized.", "OK");
+                return;
+            }
+
+            await Shell.Current.GoToAsync("///LoginPage");
         }
     }
 }

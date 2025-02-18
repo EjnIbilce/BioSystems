@@ -8,7 +8,7 @@ using BioSystems.Services;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 
-namespace BioSystems {
+namespace BioSystems.Views {
     public partial class RegisterPage : ContentPage {
         private readonly UserService _userService;
 
@@ -21,7 +21,7 @@ namespace BioSystems {
             String name = entryName.Text;
             String email = entryEmail.Text;
             String password = entryPassword.Text;
-            
+
             try {
                 if (name.Length == 0 || email.Length == 0 || password.Length == 0) {
                     await DisplayAlert("Erro!", "Ops! Você se esqueceu de escrever um dos campos!", "OK");
@@ -30,7 +30,7 @@ namespace BioSystems {
                 try {
                     await _userService.RegisterUser(name, email, password);
                     await DisplayAlert("Sucesso!", "Usuário registrado na base de dados!", "OK");
-                    await Shell.Current.GoToAsync("///LoginPage");
+                    await Shell.Current.GoToAsync("/LoginPage");
                 } catch (Exception ex) {
                     await DisplayAlert("Algo deu errado...", ex.Message, "OK");
                 }
@@ -40,7 +40,7 @@ namespace BioSystems {
         }
 
         private async void onAlreadyClicked(Object sender, EventArgs e) {
-            await Shell.Current.GoToAsync("///LoginPage");
+            await Shell.Current.GoToAsync("/LoginPage");
         }
     }
 }
