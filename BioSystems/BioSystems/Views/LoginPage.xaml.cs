@@ -21,7 +21,13 @@ namespace BioSystems.Views {
                 var email = entryEmail.Text;
                 var password = entryPassword.Text;
                 User user = (await _userService.LoginUser(email, password))!;
-                await DisplayAlert("Deu bom", "usuario achado", "OK");
+
+                Preferences.Set("UserId", user.id);
+                Preferences.Set("UserName", user.name);
+                Preferences.Set("UserEmail", user.email);
+
+                await Shell.Current.GoToAsync("///MainPage");
+
             } catch (UserNotFoundException ex) {
                 await DisplayAlert("Opss!", ex.Message, "OK");
             } catch (WrongPasswordException ex) {

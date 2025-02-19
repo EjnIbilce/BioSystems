@@ -13,7 +13,8 @@
 			HorizontalOptions="FillAndExpand"
 			VerticalOptions="FillAndExpand" 
 			ItemsSource="{Binding IntroScreens}"
-			CurrentItemChanged="Next"
+            x:Name="carouselView"
+			CurrentItemChanged="OnCurrentItemChanged"
 			>
 			<CarouselView.ItemTemplate>
 				<DataTemplate x:DataType="models:IntroScreen">
@@ -50,11 +51,11 @@
 				   HorizontalOptions="EndAndExpand"
 				   CornerRadius="30"
 				   HeightRequest="60"
-				   WidthRequest="90"
 				   BackgroundColor="{StaticResource Primary}"
 				   >
-				<Label Text="Próximo" FontSize="18" HorizontalTextAlignment="Center" VerticalTextAlignment="Center"></Label>
+            <Button Text="Próximo" FontSize="18" Clicked="Next" BackgroundColor="{StaticResource Primary}" TextColor="Black"  HorizontalOptions="EndAndExpand" HeightRequest="60"></Button>
 			</Frame>
+                <!-- <Label Text="Próximo" FontSize="18" HorizontalTextAlignment="Center" VerticalTextAlignment="Center"></Label> -->
 		</StackLayout>
     </StackLayout>
 

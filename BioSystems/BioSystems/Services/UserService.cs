@@ -23,10 +23,6 @@ namespace BioSystems.Services {
                 throw new WrongPasswordException();
             }
 
-            Preferences.Set("UserId", user.id);
-            Preferences.Set("UserName", user.name);
-            Preferences.Set("UserEmail", user.email);
-
             return user;
         }
 

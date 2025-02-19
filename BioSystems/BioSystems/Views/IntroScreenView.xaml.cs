@@ -5,6 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using BioSystems.Models;
 using BioSystems.ViewModels;
+using Microsoft.Maui.Controls;
 
 namespace BioSystems.Views
 {
@@ -16,6 +17,19 @@ namespace BioSystems.Views
         }
 
         private async void Next(Object sender, EventArgs e) {
+            if (carouselView.ItemsSource is IList<IntroScreen> items) {
+                var currentIndex = items.IndexOf((IntroScreen)carouselView.CurrentItem);
+
+                if (currentIndex < items.Count - 1) {
+                    carouselView.CurrentItem = items[currentIndex + 1];
+                } else {
+                    await Shell.Current.GoToAsync("///RegisterPage");
+                }
+            }
+        }
+
+        private void OnCurrentItemChanged(Object sender, EventArgs e) {
+            
         }
 
         private async void Jump(Object sender, EventArgs e) {
