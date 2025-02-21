@@ -28,10 +28,6 @@ namespace BioSystems.Views
             }
         }
 
-        private void OnCurrentItemChanged(Object sender, EventArgs e) {
-            
-        }
-
         private async void Jump(Object sender, EventArgs e) {
             if (Shell.Current == null) {
                 await DisplayAlert("Error", "Navigation system is not initialized.", "OK");

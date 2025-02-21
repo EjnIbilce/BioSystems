@@ -4,7 +4,15 @@
              x:Class="BioSystems.Views.MainPage">
 
     <ScrollView>
-        <Button Clicked="ClickedUserConfig" Text="Configuração" />
+        <VerticalStackLayout Margin="0,0,0,10">
+            <HorizontalStackLayout Padding="20" BackgroundColor="LightGray">
+                <Button Clicked="ClickedUserConfig" Text="Configuração" FontSize="12" />
+                <VerticalStackLayout Margin="10,0,0,0">
+                    <Label Text="Bem vindo!" FontSize="18" TextColor="{StaticResource PrimaryDark}" FontAttributes="Bold"></Label>
+                    <Label x:Name="userName"></Label>
+                </VerticalStackLayout>
+            </HorizontalStackLayout>
+        </VerticalStackLayout>
     </ScrollView>
 
 </ContentPage>

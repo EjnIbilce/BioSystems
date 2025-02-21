@@ -21,12 +21,11 @@ namespace BioSystems.Views {
                 var email = entryEmail.Text;
                 var password = entryPassword.Text;
                 User user = (await _userService.LoginUser(email, password))!;
-
                 Preferences.Set("UserId", user.id);
                 Preferences.Set("UserName", user.name);
                 Preferences.Set("UserEmail", user.email);
 
-                await Shell.Current.GoToAsync("///MainPage");
+                await Shell.Current.GoToAsync($"///MainPage?UserId={user.id}&UserName={user.name}&UserEmail={user.email}");
 
             } catch (UserNotFoundException ex) {
                 await DisplayAlert("Opss!", ex.Message, "OK");

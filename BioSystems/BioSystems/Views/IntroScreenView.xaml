@@ -14,7 +14,6 @@
 			VerticalOptions="FillAndExpand" 
 			ItemsSource="{Binding IntroScreens}"
             x:Name="carouselView"
-			CurrentItemChanged="OnCurrentItemChanged"
 			>
 			<CarouselView.ItemTemplate>
 				<DataTemplate x:DataType="models:IntroScreen">
@@ -55,7 +54,6 @@
 				   >
             <Button Text="Próximo" FontSize="18" Clicked="Next" BackgroundColor="{StaticResource Primary}" TextColor="Black"  HorizontalOptions="EndAndExpand" HeightRequest="60"></Button>
 			</Frame>
-                <!-- <Label Text="Próximo" FontSize="18" HorizontalTextAlignment="Center" VerticalTextAlignment="Center"></Label> -->
 		</StackLayout>
     </StackLayout>
 
