@@ -9,11 +9,11 @@
 	
     <StackLayout Margin="10">
 		<CarouselView
-			Loop="False"
 			HorizontalOptions="FillAndExpand"
 			VerticalOptions="FillAndExpand" 
 			ItemsSource="{Binding IntroScreens}"
             x:Name="carouselView"
+            CurrentItemChanged="ChangedItem"
 			>
 			<CarouselView.ItemTemplate>
 				<DataTemplate x:DataType="models:IntroScreen">

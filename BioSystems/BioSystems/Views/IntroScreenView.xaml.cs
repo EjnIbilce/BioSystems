@@ -11,9 +11,18 @@ namespace BioSystems.Views
 {
     public partial class IntroScreenView : ContentPage
     {
+        private int _index = 0;
         public IntroScreenView() {
             InitializeComponent();
-            this.BindingContext = new IntroScreenViewModel();
+            BindingContext = new IntroScreenViewModel();
+        }
+
+        private async void ChangedItem(Object sender, CurrentItemChangedEventArgs e) {
+            if (_index > carouselView.Position) {
+                await Shell.Current.GoToAsync("///RegisterPage");
+            }
+
+            _index = carouselView.Position;
         }
 
         private async void Next(Object sender, EventArgs e) {

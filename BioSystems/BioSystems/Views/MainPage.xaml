@@ -1,17 +1,57 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             x:Class="BioSystems.Views.MainPage">
+             xmlns:viewModels="clr-namespace:BioSystems.ViewModels"
+			 xmlns:models="clr-namespace:BioSystems.Models"
+             x:Class="BioSystems.Views.MainPage"
+             x:DataType="viewModels:MainPageViewModel">
 
     <ScrollView>
         <VerticalStackLayout Margin="0,0,0,10">
-            <HorizontalStackLayout Padding="20" BackgroundColor="LightGray">
-                <Button Clicked="ClickedUserConfig" Text="Configuração" FontSize="12" />
-                <VerticalStackLayout Margin="10,0,0,0">
-                    <Label Text="Bem vindo!" FontSize="18" TextColor="{StaticResource PrimaryDark}" FontAttributes="Bold"></Label>
-                    <Label x:Name="userName"></Label>
-                </VerticalStackLayout>
-            </HorizontalStackLayout>
+            <VerticalStackLayout>
+                <HorizontalStackLayout Padding="50, 50, 0, 50" BackgroundColor="{StaticResource Cinzinha}">
+                    <Button Clicked="ClickedUserConfig" Text="Conf" FontSize="12" />
+                    <VerticalStackLayout Margin="10,0,0,0">
+                        <Label Text="Bem vindo!" FontSize="18" TextColor="{StaticResource PrimaryDark}" FontAttributes="Bold"/>
+                        <Label x:Name="userName"/>
+                    </VerticalStackLayout>
+                </HorizontalStackLayout>
+                <StackLayout BackgroundColor="{StaticResource Cinzinha}">
+                    <HorizontalStackLayout Margin="40,0,0,0" HorizontalOptions="StartAndExpand" Padding="10,10,10,75">
+                        <Button WidthRequest="30" HeightRequest="30"/>
+                        <Entry BackgroundColor="Transparent" WidthRequest="200" x:Name="entrySearch" Placeholder="Pesquisar" Keyboard="Default"/>
+                    </HorizontalStackLayout>
+                </StackLayout>
+                <HorizontalStackLayout TranslationY="-55" HeightRequest="80" HorizontalOptions="Center">
+                    <Button Margin="5" WidthRequest="70"/>
+                    <Button Margin="5" WidthRequest="70"/>
+                    <Button Margin="5" WidthRequest="70"/>
+                    <Button Margin="5" WidthRequest="70"/>
+                </HorizontalStackLayout>
+            </VerticalStackLayout>
+
+            <!-- Places Carousel -->
+            <VerticalStackLayout Margin="50,0">
+                <Label FontAttributes="Bold" FontSize="18" Text="Pontos Recomendados"/>
+                <CarouselView ItemsSource="{Binding Places}" 
+                              HeightRequest="200"
+                              IndicatorView="indicator"
+                              Loop="False">
+                    <CarouselView.ItemTemplate>
+                        <DataTemplate x:DataType="models:Place">
+                            <Frame Margin="0,0" Padding="10" BorderColor="LightGray" CornerRadius="10">
+                                <VerticalStackLayout>
+                                    <Label Text="{Binding name}" FontAttributes="Bold" FontSize="16"/>
+                                    <Label Text="{Binding Adress}" FontSize="14" TextColor="Gray"/>
+                                </VerticalStackLayout>
+                            </Frame>
+                        </DataTemplate>
+                    </CarouselView.ItemTemplate>
+                </CarouselView>
+
+                <!-- Dots Indicator -->
+                <IndicatorView x:Name="indicator" HorizontalOptions="Center"/>
+            </VerticalStackLayout>
         </VerticalStackLayout>
     </ScrollView>
 

@@ -5,7 +5,10 @@
              >
 
     <StackLayout Margin="10">
-			<Button Text="Desconectar" FontSize="16" Clicked="Logout" BackgroundColor="Red" />
+        <HorizontalStackLayout>
+            <Button Text="Desconectar" FontSize="16" Clicked="Logout" BackgroundColor="Red" />
+            <Button Text="Voltar" FontSize="16" Clicked="ToMain" TextColor="{StaticResource PrimaryDark}" BackgroundColor="Transparent" />
+        </HorizontalStackLayout>
     </StackLayout>
 
 </ContentPage>

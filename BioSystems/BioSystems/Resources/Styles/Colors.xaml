@@ -24,6 +24,7 @@
     <Color x:Key="Black">#000000</Color>
     <Color x:Key="SecondaryBlack">#000000</Color>
     <!-- Black for Contrast -->
+    <Color x:Key="Cinzinha">#f5f9f8</Color>
 
     <!-- Background and Text Colors -->
     <Color x:Key="White">#ffffff</Color>

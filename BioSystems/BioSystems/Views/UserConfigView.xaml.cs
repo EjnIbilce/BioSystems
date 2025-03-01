@@ -14,5 +14,9 @@ namespace BioSystems.Views {
             Preferences.Clear();
             await Shell.Current.GoToAsync("///LoginPage");
         }
+
+        private async void ToMain(Object sender, EventArgs e) {
+            await Shell.Current.GoToAsync("///MainPage");
+        }
     }
 }

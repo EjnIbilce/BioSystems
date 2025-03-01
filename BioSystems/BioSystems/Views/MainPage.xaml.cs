@@ -1,4 +1,5 @@
 ﻿using BioSystems.Models;
+using BioSystems.ViewModels;
 
 namespace BioSystems.Views
 {
@@ -9,8 +10,8 @@ namespace BioSystems.Views
         public MainPage()
         {
             InitializeComponent();
-
             checkPreferences();
+            BindingContext = new MainPageViewModel();
         }
 
         public void ApplyQueryAttributes(IDictionary<string, object> query) {
@@ -36,8 +37,7 @@ namespace BioSystems.Views
             }
         }
         private async void ClickedUserConfig(object sender, EventArgs e) {
-            await Shell.Current.GoToAsync($"///UserConfigView");
+            await Shell.Current.GoToAsync("///UserConfigView");
         }
     }
-
 }

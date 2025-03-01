@@ -25,7 +25,6 @@ namespace BioSystems
 
             builder.Services.AddDbContext<AppDbContext>(options => options.UseNpgsql(connectionString));
 
-
             builder.Services.AddScoped<UserService>();
 
             builder.Services.AddTransient<RegisterPage>();
