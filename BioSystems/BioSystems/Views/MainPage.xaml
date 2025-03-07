@@ -30,7 +30,6 @@
                 </HorizontalStackLayout>
             </VerticalStackLayout>
 
-            <!-- Places Carousel -->
             <VerticalStackLayout Margin="50,0">
                 <Label FontAttributes="Bold" FontSize="18" Text="Pontos Recomendados"/>
                 <CarouselView ItemsSource="{Binding Places}" 
@@ -49,8 +48,19 @@
                     </CarouselView.ItemTemplate>
                 </CarouselView>
 
-                <!-- Dots Indicator -->
                 <IndicatorView x:Name="indicator" HorizontalOptions="Center"/>
+            </VerticalStackLayout>
+
+            <VerticalStackLayout Margin="50, 0">
+                <Label FontAttributes="Bold" FontSize="18" Text="Reciclagem"></Label>
+                <Frame Margin="0" Padding="10" BorderColor="LightGray" CornerRadius="10">
+                    <VerticalStackLayout Margin="10">
+                        <Button Clicked="OnCategoryClicked" Text="Categorias" Margin="50, 0"></Button>
+                    </VerticalStackLayout>
+                    <Frame.GestureRecognizers>
+                        <TapGestureRecognizer Tapped="OnCategoryClicked"></TapGestureRecognizer>
+                    </Frame.GestureRecognizers>
+                </Frame>
             </VerticalStackLayout>
         </VerticalStackLayout>
     </ScrollView>

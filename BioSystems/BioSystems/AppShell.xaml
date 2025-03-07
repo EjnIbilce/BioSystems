@@ -13,5 +13,6 @@
         <ShellContent ContentTemplate="{DataTemplate local:IntroScreenView}" Route="IntroScreenView" />
         <ShellContent ContentTemplate="{DataTemplate local:RegisterPage}" Route="RegisterPage" />
         <ShellContent ContentTemplate="{DataTemplate local:UserConfigView}" Route="UserConfigView" />
+        <ShellContent ContentTemplate="{DataTemplate local:Categories}" Route="Categories" />
     </ShellItem>
 </Shell>
