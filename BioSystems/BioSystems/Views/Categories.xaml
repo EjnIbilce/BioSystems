@@ -3,8 +3,68 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="BioSystems.Views.Categories">
 
-    <VerticalStackLayout Padding="20" Spacing="10">
-        <Label Text="Oi" FontSize="32" HorizontalOptions="Center"/>
-    </VerticalStackLayout>
+	<ScrollView>
+		<VerticalStackLayout Margin="30,0" Padding="20" Spacing="15">
+
+			<!-- Back Button -->
+			<Button Text="Voltar"
+                    FontSize="16"
+                    BackgroundColor="Transparent"
+                    TextColor="Blue"
+                    Clicked="OnBackButtonClicked"
+                    HorizontalOptions="Start"/>
+
+			<Label Text="Coleta Seletiva"
+                   FontSize="24"
+                   FontAttributes="Bold"
+                   HorizontalOptions="Center"/>
+
+			<!-- Papel (Azul) -->
+			<Frame BorderColor="Blue" CornerRadius="10" Padding="10">
+				<VerticalStackLayout>
+					<Image Source="papel_azul.png" HeightRequest="100" Aspect="AspectFit"/>
+					<Label Text="Papel e Papelão (Azul)" FontSize="18" FontAttributes="Bold"/>
+					<Label Text="Materiais recicláveis de papel e papelão." FontSize="14"/>
+				</VerticalStackLayout>
+			</Frame>
+
+			<!-- Vidro (Verde) -->
+			<Frame BorderColor="Green" CornerRadius="10" Padding="10">
+				<VerticalStackLayout>
+					<Image Source="vidro_verde.png" HeightRequest="100" Aspect="AspectFit"/>
+					<Label Text="Vidro (Verde)" FontSize="18" FontAttributes="Bold"/>
+					<Label Text="Garrafas, potes e cacos de vidro." FontSize="14"/>
+				</VerticalStackLayout>
+			</Frame>
+
+			<!-- Metal (Amarelo) -->
+			<Frame BorderColor="Yellow" CornerRadius="10" Padding="10">
+				<VerticalStackLayout>
+					<Image Source="metal_amarelo.png" HeightRequest="100" Aspect="AspectFit"/>
+					<Label Text="Metal (Amarelo)" FontSize="18" FontAttributes="Bold"/>
+					<Label Text="Latas de alumínio, ferro e aço." FontSize="14"/>
+				</VerticalStackLayout>
+			</Frame>
+
+			<!-- Plástico (Vermelho) -->
+			<Frame BorderColor="Red" CornerRadius="10" Padding="10">
+				<VerticalStackLayout>
+					<Image Source="plastico_vermelho.png" HeightRequest="100" Aspect="AspectFit"/>
+					<Label Text="Plástico (Vermelho)" FontSize="18" FontAttributes="Bold"/>
+					<Label Text="Garrafas PET, sacolas plásticas e embalagens." FontSize="14"/>
+				</VerticalStackLayout>
+			</Frame>
+
+			<!-- Orgânico (Marrom) -->
+			<Frame BorderColor="Brown" CornerRadius="10" Padding="10">
+				<VerticalStackLayout>
+					<Image Source="organico_marrom.png" HeightRequest="100" Aspect="AspectFit"/>
+					<Label Text="Orgânico (Marrom)" FontSize="18" FontAttributes="Bold"/>
+					<Label Text="Resíduos orgânicos, como restos de comida." FontSize="14"/>
+				</VerticalStackLayout>
+			</Frame>
+
+		</VerticalStackLayout>
+	</ScrollView>
 
 </ContentPage>
