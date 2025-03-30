@@ -30,7 +30,7 @@ namespace BioSystems.Views {
                 try {
                     await _userService.RegisterUser(name, email, password);
                     await DisplayAlert("Sucesso!", "Usuário registrado na base de dados!", "OK");
-                    await Shell.Current.GoToAsync("/LoginPage");
+                    await Shell.Current.GoToAsync("//LoginPage");
                 } catch (Exception ex) {
                     await DisplayAlert("Algo deu errado...", ex.Message, "OK");
                 }

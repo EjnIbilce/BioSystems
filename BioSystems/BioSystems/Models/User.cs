@@ -7,7 +7,7 @@ using System.Text;
 using System.Threading.Tasks;
 
 namespace BioSystems.Models {
-    [Table("users")]
+    [Table("Users")]
     public class User {
         [Key]
         public int id { get; set; }

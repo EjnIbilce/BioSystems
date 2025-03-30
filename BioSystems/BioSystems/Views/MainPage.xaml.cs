@@ -36,6 +36,7 @@ namespace BioSystems.Views
                 userName.Text = user.name;
             }
         }
+
         private async void ClickedUserConfig(object sender, EventArgs e) {
             await Shell.Current.GoToAsync("///UserConfigView");
         }

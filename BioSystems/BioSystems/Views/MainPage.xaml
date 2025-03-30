@@ -2,66 +2,236 @@
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:viewModels="clr-namespace:BioSystems.ViewModels"
-			 xmlns:models="clr-namespace:BioSystems.Models"
+             xmlns:models="clr-namespace:BioSystems.Models"
              x:Class="BioSystems.Views.MainPage"
-             x:DataType="viewModels:MainPageViewModel">
+             x:DataType="viewModels:MainPageViewModel"
+             BackgroundColor="White">
 
     <ScrollView>
-        <VerticalStackLayout Margin="0,0,0,10">
-            <VerticalStackLayout>
-                <HorizontalStackLayout Padding="50, 50, 0, 50" BackgroundColor="{StaticResource Cinzinha}">
-                    <Button Clicked="ClickedUserConfig" TextColor="White" Text="Configurações" FontSize="12" />
-                    <VerticalStackLayout Margin="10,0,0,0">
-                        <Label Text="Bem vindo!" FontSize="18" TextColor="{StaticResource PrimaryDark}" FontAttributes="Bold"/>
-                        <Label x:Name="userName"/>
-                    </VerticalStackLayout>
-                </HorizontalStackLayout>
-                <StackLayout BackgroundColor="{StaticResource Cinzinha}">
-                    <HorizontalStackLayout Margin="40,0,0,0" HorizontalOptions="StartAndExpand" Padding="10,10,10,75">
-                        <Button WidthRequest="30" HeightRequest="30"/>
-                        <Entry WidthRequest="285" BackgroundColor="Transparent" x:Name="entrySearch" Placeholder="Pesquisar" Keyboard="Default"/>
-                    </HorizontalStackLayout>
-                </StackLayout>
-                <HorizontalStackLayout TranslationY="-55" HeightRequest="80" HorizontalOptions="Center">
-                    <Button Margin="5" FontSize="10" TextColor="White" WidthRequest="70" Text="Mapa" />
-                    <Button Margin="5" FontSize="10" TextColor="White" WidthRequest="70" Text="Desafios" />
-                    <Button Padding="0" Margin="5" FontSize="10" TextColor="White" WidthRequest="70" Text="Educação"/>
-                    <Button Margin="5" FontSize="10" TextColor="White" WidthRequest="70" Text="Loja" />
-                </HorizontalStackLayout>
-            </VerticalStackLayout>
+        <VerticalStackLayout Padding="20" Spacing="15">
 
-            <VerticalStackLayout Margin="50,0">
-                <Label FontAttributes="Bold" FontSize="18" Text="Pontos Recomendados"/>
-                <CarouselView ItemsSource="{Binding Places}" 
-                              HeightRequest="200"
-                              IndicatorView="indicator"
-                              Loop="False">
-                    <CarouselView.ItemTemplate>
-                        <DataTemplate x:DataType="models:Place">
-                            <Frame Margin="0,0" Padding="10" BorderColor="LightGray" CornerRadius="10">
-                                <VerticalStackLayout>
-                                    <Label Text="{Binding name}" FontAttributes="Bold" FontSize="16"/>
-                                    <Label Text="{Binding Adress}" FontSize="14" TextColor="Gray"/>
-                                </VerticalStackLayout>
-                            </Frame>
-                        </DataTemplate>
-                    </CarouselView.ItemTemplate>
-                </CarouselView>
+            <!-- Seção Bem-vindo -->
+            <Grid ColumnDefinitions="Auto, *, Auto"
+                  Padding="10"
+                  VerticalOptions="Start"
+                  RowSpacing="0">
 
-                <IndicatorView x:Name="indicator" HorizontalOptions="Center"/>
-            </VerticalStackLayout>
+                <!-- Ícone de Perfil -->
+                <!-- E853 = account_circle -->
+                <Label Grid.Column="0"
+                   Text="&#xE853;"
+                   FontFamily="MaterialIcons"
+                   FontSize="50"
+                   TextColor="Green"
+                   VerticalOptions="Center">
+                    <!-- Adicionando o evento de clique -->
+                    <Label.GestureRecognizers>
+                        <TapGestureRecognizer Tapped="ClickedUserConfig" />
+                    </Label.GestureRecognizers>
+                </Label>
 
-            <VerticalStackLayout Margin="50, 0">
-                <Label FontAttributes="Bold" FontSize="18" Text="Reciclagem"></Label>
-                <Frame Margin="0" Padding="10" BorderColor="LightGray" CornerRadius="10">
-                    <VerticalStackLayout Margin="10">
-                        <Button Clicked="OnCategoryClicked" TextColor="White" Text="Categorias" Margin="50, 0"></Button>
+                <!-- Texto Bem-vindo -->
+                <VerticalStackLayout Grid.Column="1" VerticalOptions="Center">
+                    <Label Text="Bem-vindo!" FontAttributes="Bold" FontSize="16" TextColor="Green"/>
+                    <Label x:Name="userName" FontSize="14"/>
+                </VerticalStackLayout>
+
+                <!-- Ícone de Notificação -->
+                <!-- E7F4 = notifications -->
+                <Label Grid.Column="2"
+                   Text="&#xE7F4;"
+                   FontFamily="MaterialIcons"
+                   FontSize="24"
+                   TextColor="Green"
+                   VerticalOptions="Center"
+                   HorizontalOptions="End"/>
+            </Grid>
+
+
+
+            <!-- Barra de pesquisa -->
+            <Frame CornerRadius="10" BackgroundColor="#F0F0F0" Padding="10" HasShadow="False">
+                <Grid ColumnDefinitions="Auto, *" VerticalOptions="Center" RowSpacing="0">
+                    <!-- Ícone de Pesquisa -->
+                    <!-- E8B6 = search -->
+                    <Label Grid.Column="0"
+               Text="&#xE8B6;"
+               FontFamily="MaterialIcons"
+               FontSize="20"
+               TextColor="Gray"
+               VerticalOptions="Center"/>
+
+                    <!-- Campo de pesquisa -->
+                    <Entry Grid.Column="1"
+               x:Name="entrySearch"
+               Placeholder="Pesquisar"
+               BackgroundColor="Transparent"
+               VerticalOptions="Center"/>
+                </Grid>
+            </Frame>
+
+            <!-- Botões principais -->
+            <Grid ColumnDefinitions="*,*,*,*" ColumnSpacing="10" Padding="10">
+
+                <!-- Botão Mapa -->
+                <Frame Grid.Column="0"
+           BackgroundColor="Green"
+           CornerRadius="20"
+           HeightRequest="80"
+           WidthRequest="90"
+           Padding="5">
+                    <VerticalStackLayout VerticalOptions="Center" HorizontalOptions="Center" Spacing="5">
+                        <Label Text="&#xE55B;"
+                   FontFamily="MaterialIcons"
+                   FontSize="24"
+                   TextColor="White"
+                   HorizontalOptions="Center"/>
+                        <Label Text="Mapa"
+                   FontSize="11"
+                   TextColor="White"
+                   HorizontalOptions="Center"/>
                     </VerticalStackLayout>
                     <Frame.GestureRecognizers>
-                        <TapGestureRecognizer Tapped="OnCategoryClicked"></TapGestureRecognizer>
+                        <TapGestureRecognizer Tapped="OnCategoryClicked"/>
                     </Frame.GestureRecognizers>
                 </Frame>
-            </VerticalStackLayout>
+
+                <!-- Botão Meus Desafios -->
+                <Frame Grid.Column="1"
+           BackgroundColor="Green"
+           CornerRadius="20"
+           HeightRequest="80"
+           WidthRequest="90"
+           Padding="5">
+                    <VerticalStackLayout VerticalOptions="Center" HorizontalOptions="Center" Spacing="3">
+                        <Label Text="&#xEA23;"
+                   FontFamily="MaterialIcons"
+                   FontSize="24"
+                   TextColor="White"
+                   HorizontalOptions="Center"/>
+                        <Label Text="Meus&#x0a;Desafios"
+                   FontSize="11"
+                   TextColor="White"
+                   HorizontalOptions="Center"
+                   HorizontalTextAlignment="Center"/>
+                    </VerticalStackLayout>
+                    <Frame.GestureRecognizers>
+                        <TapGestureRecognizer Tapped="OnCategoryClicked"/>
+                    </Frame.GestureRecognizers>
+                </Frame>
+
+                <!-- Botão Educação -->
+                <Frame Grid.Column="2"
+           BackgroundColor="Green"
+           CornerRadius="20"
+           HeightRequest="80"
+           WidthRequest="90"
+           Padding="5">
+                    <VerticalStackLayout VerticalOptions="Center" HorizontalOptions="Center" Spacing="5">
+                        <Label Text="&#xE80C;"
+                   FontFamily="MaterialIcons"
+                   FontSize="24"
+                   TextColor="White"
+                   HorizontalOptions="Center"/>
+                        <Label Text="Educação"
+                   FontSize="11"
+                   TextColor="White"
+                   HorizontalOptions="Center"/>
+                    </VerticalStackLayout>
+                    <Frame.GestureRecognizers>
+                        <TapGestureRecognizer Tapped="OnCategoryClicked"/>
+                    </Frame.GestureRecognizers>
+                </Frame>
+
+                <!-- Botão Loja -->
+                <Frame Grid.Column="3"
+           BackgroundColor="Green"
+           CornerRadius="20"
+           HeightRequest="80"
+           WidthRequest="90"
+           Padding="5">
+                    <VerticalStackLayout VerticalOptions="Center" HorizontalOptions="Center" Spacing="5">
+                        <Label Text="&#xE8CC;"
+                   FontFamily="MaterialIcons"
+                   FontSize="24"
+                   TextColor="White"
+                   HorizontalOptions="Center"/>
+                        <Label Text="Loja"
+                   FontSize="11"
+                   TextColor="White"
+                   HorizontalOptions="Center"/>
+                    </VerticalStackLayout>
+                    <Frame.GestureRecognizers>
+                        <TapGestureRecognizer Tapped="OnCategoryClicked"/>
+                    </Frame.GestureRecognizers>
+                </Frame>
+
+            </Grid>
+
+            <!-- Pontos recomendados -->
+            <Label Text="Pontos recomendados" FontAttributes="Bold" FontSize="18" TextColor="Black" Padding="10"/>
+
+            <CarouselView ItemsSource="{Binding Places}" HeightRequest="200" Loop="False" IndicatorView="indicator">
+                <CarouselView.ItemTemplate>
+                    <DataTemplate x:DataType="models:Place">
+                        <Frame CornerRadius="15" BorderColor="LightGray" Padding="0" Margin="10">
+                            <Grid>
+                                <!-- Imagem de fundo -->
+                                <Image Source="ibilce.jpg" Aspect="Fill" Opacity="0.5"/>
+
+                                <!-- Caixa de texto sobre a imagem -->
+                                <VerticalStackLayout VerticalOptions="Center" HorizontalOptions="Center" Padding="10">
+                                    <Label Text="{Binding name}" FontAttributes="Bold" FontSize="18" TextColor="Black" HorizontalOptions="Center"/>
+                                    <Label Text="{Binding Adress}" FontSize="14" TextColor="Black" HorizontalOptions="Center"/>
+                                </VerticalStackLayout>
+                            </Grid>
+                        </Frame>
+                    </DataTemplate>
+                </CarouselView.ItemTemplate>
+            </CarouselView>
+
+            <IndicatorView x:Name="indicator" HorizontalOptions="Center"/>
+
+
+
+            <!-- Seção Reciclagem -->
+            <Label Text="Reciclagem" FontAttributes="Bold" FontSize="18" TextColor="Black"/>
+
+            <HorizontalStackLayout HorizontalOptions="Center" Spacing="15">
+                <!-- Botão Scanner -->
+                <Frame BackgroundColor="Green" CornerRadius="10" WidthRequest="130" HeightRequest="130" Padding="10">
+                    <VerticalStackLayout VerticalOptions="Center" HorizontalOptions="Center" Spacing="10">
+                        <!-- Ícone Scanner -->
+                        <Label Text="&#xF206;"
+                   FontFamily="MaterialIcons"
+                   FontSize="40"
+                   TextColor="White"
+                   HorizontalOptions="Center"/>
+                        <Label Text="Scanner" TextColor="White" FontSize="14" HorizontalOptions="Center"/>
+                    </VerticalStackLayout>
+                    <Frame.GestureRecognizers>
+                        <TapGestureRecognizer Tapped="OnCategoryClicked" />
+                    </Frame.GestureRecognizers>
+                </Frame>
+
+                <!-- Botão Categoria -->
+                <Frame BackgroundColor="Green" CornerRadius="10" WidthRequest="130" HeightRequest="130" Padding="10">
+                    <VerticalStackLayout VerticalOptions="Center" HorizontalOptions="Center" Spacing="10">
+                        <!-- Ícone Categoria -->
+                        <Label Text="&#xE574;"
+                   FontFamily="MaterialIcons"
+                   FontSize="40"
+                   TextColor="White"
+                   HorizontalOptions="Center"/>
+                        <Label Text="Categoria" TextColor="White" FontSize="14" HorizontalOptions="Center"/>
+                    </VerticalStackLayout>
+                    <Frame.GestureRecognizers>
+                        <TapGestureRecognizer Tapped="OnCategoryClicked" />
+                    </Frame.GestureRecognizers>
+                </Frame>
+            </HorizontalStackLayout>
+
+
         </VerticalStackLayout>
     </ScrollView>
 
