@@ -55,11 +55,11 @@
                     <!-- Ícone de Pesquisa -->
                     <!-- E8B6 = search -->
                     <Label Grid.Column="0"
-               Text="&#xE8B6;"
-               FontFamily="MaterialIcons"
-               FontSize="20"
-               TextColor="Gray"
-               VerticalOptions="Center"/>
+                       Text="&#xE8B6;"
+                       FontFamily="MaterialIcons"
+                       FontSize="20"
+                       TextColor="Gray"
+                       VerticalOptions="Center"/>
 
                     <!-- Campo de pesquisa -->
                     <Entry Grid.Column="1"

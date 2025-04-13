@@ -1,14 +1,49 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             x:Class="BioSystems.Views.UserConfigView"
-             >
+             x:Class="BioSystems.Views.UserConfigView">
 
-    <StackLayout Margin="10">
-        <HorizontalStackLayout>
-            <Button Text="Desconectar" FontSize="16" Clicked="Logout" BackgroundColor="Red" />
-            <Button Text="Voltar" FontSize="16" Clicked="ToMain" TextColor="{StaticResource PrimaryDark}" BackgroundColor="Transparent" />
-        </HorizontalStackLayout>
-    </StackLayout>
+    <ScrollView>
+        <VerticalStackLayout Padding="20" Spacing="15">
+            <!-- Seção Perfil -->
+            <Grid ColumnDefinitions="Auto, *, Auto" 
+                  Padding="0" 
+                  VerticalOptions="Start" 
+                  RowSpacing="0">
+                
+                <!-- Ícone de Perfil -->
+                <Label Grid.Column="0"
+                    Text="&#xE853;" 
+                    FontFamily="MaterialIcons"
+                    FontSize="100"
+                    TextColor="Green"
+                    VerticalOptions="Center">
+                </Label>
+
+                <!-- Texto Bem-vindo -->
+                <VerticalStackLayout Grid.Column="1" VerticalOptions="Center">
+                    <Label x:Name="userName" FontSize="18" TextColor="Green"/>
+                    <Label x:Name="userEmail" FontSize="18" TextColor="Gray"/>
+                </VerticalStackLayout>
+            </Grid>
+
+            <!-- Seção de Atualização de Cadastro -->
+            <Label Text="Atualize seu Cadastro" FontAttributes="Bold" FontSize="20" TextColor="Black" Padding="10"/>
+
+            <VerticalStackLayout Padding="20" Spacing="15">
+                <!-- Campos para Atualização -->
+                <Entry x:Name="entryUpdateEmail" Placeholder="Novo Email" Keyboard="Email"/>
+                <Entry x:Name="entryUpdatePassword" Placeholder="Nova Senha" IsPassword="True"/>
+
+                <Button Text="Atualizar Cadastro" Clicked="UpdateUser"/>
+            </VerticalStackLayout>
+
+            <!-- Botões de Desconectar e Voltar -->
+            <VerticalStackLayout Padding="20">
+                <!-- Botão de Desconectar -->
+                <Button Text="Desconectar" FontSize="16" Clicked="Logout" BackgroundColor="Red" TextColor="White"/>
+            </VerticalStackLayout>
+        </VerticalStackLayout>
+    </ScrollView>
 
 </ContentPage>

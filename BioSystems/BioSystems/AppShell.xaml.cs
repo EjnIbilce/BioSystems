@@ -10,6 +10,7 @@ namespace BioSystems
 
             Routing.RegisterRoute(nameof(LoginPage), typeof(LoginPage));
             Routing.RegisterRoute(nameof(RegisterPage), typeof(RegisterPage));
+            Routing.RegisterRoute(nameof(UserConfigView), typeof(UserConfigView));
         }
     }
 }

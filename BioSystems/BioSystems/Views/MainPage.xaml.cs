@@ -38,7 +38,7 @@ namespace BioSystems.Views
         }
 
         private async void ClickedUserConfig(object sender, EventArgs e) {
-            await Shell.Current.GoToAsync("///UserConfigView");
+            await Shell.Current.GoToAsync("UserConfigView");
         }
 
         private async void OnCategoryClicked(object sender, EventArgs e) {
