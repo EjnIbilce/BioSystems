@@ -1,6 +1,7 @@
 ﻿using BioSystems.Data;
 using BioSystems.Models;
 using BioSystems.Services;
+using BioSystems.ViewModels;
 using BioSystems.Views;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Logging;

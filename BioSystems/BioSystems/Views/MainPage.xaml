@@ -4,11 +4,14 @@
              xmlns:viewModels="clr-namespace:BioSystems.ViewModels"
              xmlns:models="clr-namespace:BioSystems.Models"
              x:Class="BioSystems.Views.MainPage"
+             xmlns:toolkit="http://schemas.microsoft.com/dotnet/2022/maui/toolkit"
              x:DataType="viewModels:MainPageViewModel"
-             BackgroundColor="White">
+             BackgroundColor="White"
+             >
 
     <ScrollView>
         <VerticalStackLayout Padding="20" Spacing="15">
+            <Button Clicked="SaveImageToDatabase" Text="Salvar Imagem"></Button>
 
             <!-- Seção Bem-vindo -->
             <Grid ColumnDefinitions="Auto, *, Auto"
@@ -176,19 +179,20 @@
                     <DataTemplate x:DataType="models:Place">
                         <Frame CornerRadius="15" BorderColor="LightGray" Padding="0" Margin="10">
                             <Grid>
-                                <!-- Imagem de fundo -->
-                                <Image Source="ibilce.jpg" Aspect="Fill" Opacity="0.5"/>
+                                <!-- Dynamic image from DB -->
+                                <Image Source="{Binding ImageSource}" Aspect="Fill" Opacity="0.5"/>
 
-                                <!-- Caixa de texto sobre a imagem -->
+                                <!-- Text content -->
                                 <VerticalStackLayout VerticalOptions="Center" HorizontalOptions="Center" Padding="10">
-                                    <Label Text="{Binding name}" FontAttributes="Bold" FontSize="18" TextColor="Black" HorizontalOptions="Center"/>
-                                    <Label Text="{Binding Adress}" FontSize="14" TextColor="Black" HorizontalOptions="Center"/>
+                                    <Label Text="{Binding Name}" FontAttributes="Bold" FontSize="18" TextColor="Black" HorizontalOptions="Center"/>
+                                    <Label Text="{Binding Address}" FontSize="14" TextColor="Black" HorizontalOptions="Center"/>
                                 </VerticalStackLayout>
                             </Grid>
                         </Frame>
                     </DataTemplate>
                 </CarouselView.ItemTemplate>
             </CarouselView>
+
 
             <IndicatorView x:Name="indicator" HorizontalOptions="Center"/>
 

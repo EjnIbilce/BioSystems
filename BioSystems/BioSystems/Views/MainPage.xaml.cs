@@ -1,4 +1,6 @@
-﻿using BioSystems.Models;
+﻿using System.Numerics;
+using BioSystems.Data;
+using BioSystems.Models;
 using BioSystems.ViewModels;
 
 namespace BioSystems.Views
@@ -7,8 +9,7 @@ namespace BioSystems.Views
     {
         private User user = new User();
 
-        public MainPage()
-        {
+        public MainPage() {
             InitializeComponent();
             checkPreferences();
             BindingContext = new MainPageViewModel();
@@ -26,6 +27,37 @@ namespace BioSystems.Views
             checkPreferences();
 
             userName.Text = user.name;
+        }
+
+        public async void SaveImageToDatabase(object sender, EventArgs e) {
+            try {
+                var assembly = typeof(App).Assembly;
+                var resourceName = "BioSystems.Resources.Embedded.ibilce.jpg";
+
+                using var stream = assembly.GetManifestResourceStream(resourceName);
+                if (stream == null) {
+                    await Application.Current.MainPage.DisplayAlert("Error", "Image stream is null", "OK");
+                    return;
+                }
+
+                using var memoryStream = new MemoryStream();
+                await stream.CopyToAsync(memoryStream);
+                byte[] imageBytes = memoryStream.ToArray();
+
+                var place = new Place {
+                    Name = "IBILCE",
+                    Address = "Rua Tal",
+                    ImageData = imageBytes
+                };
+
+                using var db = new AppDbContext();
+                await db.Places.AddAsync(place);
+                await db.SaveChangesAsync();
+
+                await Application.Current.MainPage.DisplayAlert("Success", "Image saved to DB!", "OK");
+            } catch (Exception ex) {
+                await Application.Current.MainPage.DisplayAlert("Error", ex.Message, "OK");
+            }
         }
 
         private void checkPreferences() {

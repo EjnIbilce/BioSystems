@@ -13,8 +13,10 @@ using System.Text.Json;
 namespace BioSystems.Data {
     public class AppDbContext : DbContext {
         public DbSet<User> Users { get; set; }
+        public DbSet<Place> Places { get; set; }
 
         public AppDbContext(DbContextOptions options) : base(options) { }
+        public AppDbContext() : base() { }
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder) {
             string connectionString = LoadConnectionString();
@@ -42,6 +44,7 @@ namespace BioSystems.Data {
             base.OnModelCreating(modelBuilder);
 
             modelBuilder.Entity<User>().ToTable("users").HasKey(u => u.id);
+            modelBuilder.Entity<Place>().ToTable("places").HasKey(p => p.id);
         }
     }
 }

@@ -7,16 +7,28 @@ using System.Text;
 using System.Threading.Tasks;
 
 namespace BioSystems.Models {
-    [Table("Places")]
-    public class Place{
+    [Table("places")]
+    public class Place {
         [Key]
         public int id { get; set; }
 
         [Required]
         [MaxLength(100)]
-        public string name { get; set; }
+        [Column("name")]
+        public string Name { get; set; }
 
         [Required, MaxLength(100)]
-        public string Adress { get; set; }
+        [Column("address")]
+        public string Address { get; set; }
+        [Required]
+        [Column("image")]
+        public byte[] ImageData { get; set; }
+
+        [NotMapped]
+        public ImageSource ImageSource {
+            get {
+                return ImageSource.FromStream(() => new MemoryStream(ImageData));
+            }
+        }
     }
 }

@@ -1,7 +1,11 @@
 ﻿using System.Collections.ObjectModel;
 using System.ComponentModel;
+using System.Diagnostics;
+using System.Reflection;
 using System.Runtime.CompilerServices;
+using BioSystems.Data;
 using BioSystems.Models;
+using Microsoft.EntityFrameworkCore;
 
 namespace BioSystems.ViewModels {
     public class MainPageViewModel : INotifyPropertyChanged {
@@ -15,17 +19,21 @@ namespace BioSystems.ViewModels {
         }
 
         public MainPageViewModel() {
-            LoadPlaces();
+            Places = new ObservableCollection<Place>();
+            Task.Run(async () => await LoadPlacesAsync());
         }
 
-        private void LoadPlaces() {
-            // Simulated data - replace this with a database call
-            Places = new ObservableCollection<Place>
-            {
-                new Place { id = 1, name = "Parque Central", Adress = "Rua Principal, 123" },
-                new Place { id = 2, name = "Museu da Cidade", Adress = "Av. Cultura, 45" },
-                new Place { id = 3, name = "Praia do Sol", Adress = "Orla Marítima, 567" }
-            };
+        [Obsolete]
+        public async Task LoadPlacesAsync() {
+            using var db = new AppDbContext();
+            var placesFromDb = await db.Places.ToListAsync();
+            // Clear and add on UI thread
+            Device.BeginInvokeOnMainThread(() => {
+                Places.Clear();
+                foreach (var p in placesFromDb) {
+                    Places.Add(p);
+                }
+            });
         }
 
         public event PropertyChangedEventHandler PropertyChanged;
